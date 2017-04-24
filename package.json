@@ -1,0 +1,16 @@
+{
+  "name": "fbanimal",
+  "version": "1.0.0",
+  "description": "for search fb animals",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "vanness",
+  "license": "ISC",
+  "dependencies": {
+    "expresss": "0.0.0",
+    "fbgraph": "^1.4.1",
+    "mongoose": "^4.9.6"
+  }
+}
