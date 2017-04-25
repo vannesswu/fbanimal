@@ -122,7 +122,7 @@ function checkKind(message) {
 
 app.get('/', function(req, res) {
          res.send('Hello World')
-   //    dailySearch()
+       dailySearch()
         
     });  
 app.listen(process.env.PORT || 3000, function(){
