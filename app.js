@@ -15,6 +15,7 @@ mongoose.connect('mongodb://vanness:123456@ds117311.mlab.com:17311/fbanimal');
 var rule = new schedule.RecurrenceRule();
 rule.hour = 01
 rule.minute = 05
+console.log(new Date())
 var j = schedule.scheduleJob(rule, function(){
  dailySearch()
  dailyDelete()
