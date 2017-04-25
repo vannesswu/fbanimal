@@ -4,13 +4,16 @@
   "description": "for search fb animals",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "author": "vanness",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.15.2",
     "expresss": "0.0.0",
     "fbgraph": "^1.4.1",
-    "mongoose": "^4.9.6"
+    "mongoose": "^4.9.6",
+    "node-schedule": "^1.2.1",
+    "repress": "^1.0.3"
   }
 }

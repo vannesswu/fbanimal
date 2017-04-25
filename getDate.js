@@ -2,5 +2,6 @@
 
 module.exports = {
 today : new Date(),
-sevenDayAgo : new Date(+new Date()- 20*60*60*24*1000)
+twoDayAgo : new Date(+new Date()- 2*60*60*24*1000),
+sevenDayAgo : new Date(+new Date()- 7*60*60*24*1000)
 }
