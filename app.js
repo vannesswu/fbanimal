@@ -19,8 +19,7 @@ var j = schedule.scheduleJob(rule, function(){
  dailySearch()
  dailyDelete()
 })
-dailySearch()
-dailyDelete()
+
 function dailySearch() {
        var searchIndex = 0
        for (var group in fbGroup.fbDict) {
