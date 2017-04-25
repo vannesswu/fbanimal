@@ -13,8 +13,8 @@ console.log('ya~~~~~~```')
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://vanness:123456@ds117311.mlab.com:17311/fbanimal');
 var rule = new schedule.RecurrenceRule();
-rule.hour = 15
-rule.minute = 10
+rule.hour = 17
+rule.minute = 12
 console.log(new Date())
 var j = schedule.scheduleJob(rule, function(){
  dailySearch()
