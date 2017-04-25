@@ -13,14 +13,14 @@ console.log('ya~~~~~~```')
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://vanness:123456@ds117311.mlab.com:17311/fbanimal');
 var rule = new schedule.RecurrenceRule();
-rule.hour = 14
-rule.minute = 12
-//var j = schedule.scheduleJob(rule, function(){
- // dailySearch()
-//  dailyDelete()
-//})
-//dailySearch()
-//dailyDelete()
+rule.hour = 01
+rule.minute = 05
+var j = schedule.scheduleJob(rule, function(){
+ dailySearch()
+ dailyDelete()
+})
+dailySearch()
+dailyDelete()
 function dailySearch() {
        var searchIndex = 0
        for (var group in fbGroup.fbDict) {
@@ -122,7 +122,7 @@ function checkKind(message) {
 
 app.get('/', function(req, res) {
          res.send('Hello World')
-       dailySearch()
+   //    dailySearch()
         
     });  
 app.listen(process.env.PORT || 3000, function(){
