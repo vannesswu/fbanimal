@@ -9,6 +9,7 @@
   "author": "vanness",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "expresss": "0.0.0",
     "fbgraph": "^1.4.1",

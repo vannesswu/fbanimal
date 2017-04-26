@@ -7,15 +7,16 @@ var mongoose = require('mongoose');
 var date = require('./getDate')
 var fbGroup = require('./fbgroup')
 var schedule = require('node-schedule');
+var apiController = require('./controller/apiController');
 graph.setAccessToken('1895036317378531|tNIdJgaRP_R-bGWsoupso2H4urc');
 
-console.log('ya~~~~~~```')
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://vanness:123456@ds117311.mlab.com:17311/fbanimal');
 var rule = new schedule.RecurrenceRule();
-rule.hour = 17
-rule.minute = 12
+rule.hour = 18
+rule.minute = 10
 console.log(new Date())
+
 var j = schedule.scheduleJob(rule, function(){
  dailySearch()
  dailyDelete()
@@ -24,9 +25,7 @@ var j = schedule.scheduleJob(rule, function(){
 function dailySearch() {
        var searchIndex = 0
        for (var group in fbGroup.fbDict) {
-           const url = group + '/feed?fields=message,picture,created_time'
-           console.log(url)
-           setTimeout(function() { craw(url) }, 1000*30*searchIndex)
+           setTimeout(function() { craw(group) }, 1000*30*searchIndex)
            searchIndex++
        }
 }
@@ -52,8 +51,8 @@ var skipFlag = false
 var nextPage = ''
 var created_time_string = ''
 var created_time = new Date()
-console.log(url)
-graph.get(url, function(err, res) {
+const fburl = url + '/feed?fields=message,picture,created_time'
+graph.get(fburl, function(err, res) {
   var  FBanimals = res.data; 
   for (i=0 ; i< FBanimals.length ; i++ ){
     var FBanimal = FBanimals[i] ;
@@ -65,13 +64,13 @@ graph.get(url, function(err, res) {
             created_time_string = checkNull(FBanimal['created_time']).split('T')[0]
             created_time = new Date(created_time_string)
           if (+created_time > +date.twoDayAgo) {
-    
              var newFBAnimal = AnimalInfos({
               fbid: checkNull(FBanimal['id']),
               message: checkNull(FBanimal['message']),
               picture: checkNull(FBanimal['picture']),
               created_time: checkNull(FBanimal['created_time']).split('T')[0],
-              kind: checkKind(checkNull(FBanimal['message']))
+              kind: checkKind(checkNull(FBanimal['message'])),
+              group: fbGroup.fbDict[url]
            });
            newFBAnimal.save(function(err) {
                if (err) throw err;     
@@ -120,11 +119,7 @@ function checkKind(message) {
 
 }
 
-app.get('/', function(req, res) {
-         res.send('Hello World')
-   //    dailySearch()
-        
-    });  
+apiController(app);
 app.listen(process.env.PORT || 3000, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });

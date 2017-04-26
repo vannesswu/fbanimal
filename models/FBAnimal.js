@@ -7,7 +7,8 @@ var animalInfoSchema = new Schema({
     message: String,
     picture: String,
     created_time: String,
-    kind: String
+    kind: String,
+    group: String
 });
 
 var AnimalInfos = mongoose.model('AnimalInfos', animalInfoSchema);
